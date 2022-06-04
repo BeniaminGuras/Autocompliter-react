@@ -11,17 +11,30 @@ import Autocompliter from "./Autocompiler/Autocompiler";
 
 function App() {
   const data = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7
+    "hell",
+    "night",
+    "fun",
+    "morning",
+    "work",
+    "sport",
+    "black",
+    "white",
+    "new",
+    "old",
+    "cool",
+    "bad",
+    "good",
+    "enter",
+    "embargo",
+    "Mount",
+    124,
+    1851251,
+    815290,
+    "dragon"
   ];
 
   return (
-    <Autocompliter data={data} callback={(x, y) => x<y}/> 
+    <Autocompliter data={data} /> 
   )
 }
 
