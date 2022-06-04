@@ -4,7 +4,7 @@ import styles from './UpperLevel.module.scss';
 import Tag from "../Tag/Tag";
 
 const UpperLevel = props => {
-  console.log(props);
+
   const upperLevelProperites = props.upperLevelProperites;
   
   const onChange = e => {
@@ -56,7 +56,6 @@ const UpperLevel = props => {
     if(upperLevelProperites.activeSuggestionIndex == null){
       if(upperLevelProperites.value !== ''){
         if(!upperLevelProperites.tags.includes(upperLevelProperites.value)){
-          console.log(upperLevelProperites.tags);
           upperLevelProperites.setTags([...upperLevelProperites.tags, upperLevelProperites.value]);
           upperLevelProperites.setValue('');
           upperLevelProperites.setShowSuggestion(false);
@@ -64,7 +63,6 @@ const UpperLevel = props => {
       }
     } else {
       if(!upperLevelProperites.tags.includes(upperLevelProperites.selectedSuggestions)){
-        console.log(upperLevelProperites.tags);
         upperLevelProperites.setTags([...upperLevelProperites.tags, upperLevelProperites.selectedSuggestions]);
         upperLevelProperites.setValue('');
         upperLevelProperites.setShowSuggestion(false);
