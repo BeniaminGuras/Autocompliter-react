@@ -3,32 +3,34 @@ import clsx from 'clsx';
 import styles from './ListOfSuggestions.module.scss';
 
 const ListOfSuggestions = props => {
+
+  const suggestionListProperties = props.suggestionListProperties;
   
   
   const onMouseOver = (e, index) => {
-    if(index !== props.activeSuggestionIndex){
-      props.setSelectedSuggestions(e.target);
-      props.setActiveSuggestionIndex(index);
+    if(index !== suggestionListProperties.activeSuggestionIndex){
+      suggestionListProperties.setSelectedSuggestions(e.target);
+      suggestionListProperties.setActiveSuggestionIndex(index);
     }
   }
 
-  const onClick = (e, x) => {
-    props.setTags([...props.tags, e.target.textContent ]);
-    props.setValue('');
-    props.setShowSuggestion(false);
+  const onClick = e => {
+    suggestionListProperties.setTags([...suggestionListProperties.tags, e.target.textContent ]);
+    suggestionListProperties.setValue('');
+    suggestionListProperties.setShowSuggestion(false);
   }
 
   return(
-    <ul className={clsx(props.showSuggestion && styles.active)}>
+    <ul className={clsx(suggestionListProperties.showSuggestion && styles.active)}>
 
-      {props.matched.map((x, index) => 
+      {suggestionListProperties.matched.map((x, index) => 
         <li
           key={
             shortid()
           } 
           className={
             clsx(
-              props.activeSuggestionIndex === index && styles.active
+              suggestionListProperties.activeSuggestionIndex === index && styles.active
             )} 
           data-index={
             index
@@ -38,7 +40,6 @@ const ListOfSuggestions = props => {
 
           onMouseOver={e => onMouseOver(e, index)
           }
-          
         >
         {x}
 

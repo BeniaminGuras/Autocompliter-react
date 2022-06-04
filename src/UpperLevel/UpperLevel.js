@@ -4,78 +4,95 @@ import styles from './UpperLevel.module.scss';
 import Tag from "../Tag/Tag";
 
 const UpperLevel = props => {
-
-
+  console.log(props);
+  const upperLevelProperites = props.upperLevelProperites;
+  
   const onChange = e => {
     const userInput = e.target.value;
+    let arrayOfMatched = [];
     
-    const arrayOfMatched = props.data.filter(
-      suggestion =>
-        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-    );
+    if(upperLevelProperites.callback === undefined){
+      
+      arrayOfMatched = upperLevelProperites.data.filter(
+        x =>{
+          if(x.isNaN){
+            return x.toLowerCase().includes(userInput.toLowerCase())
+          } else {
+            return x.toString().includes(userInput.toString());
+          }
+        }
+      );
+    } else {
+      arrayOfMatched = upperLevelProperites.data.filter(
+        x => 
+          upperLevelProperites.callback(x, userInput)
+      )
+    }
 
-    props.setValue(e.target.value);
+    upperLevelProperites.setValue(e.target.value);
 
     if(userInput !== ''){
-      props.setMatchedSuggestions(arrayOfMatched);
-      props.setShowSuggestion(true);
+      upperLevelProperites.setMatchedSuggestions(arrayOfMatched);
+      upperLevelProperites.setShowSuggestion(true);
     } else {
-      props.setMatchedSuggestions([]);
-      props.setShowSuggestions(false);
+      upperLevelProperites.setMatchedSuggestions([]);
+      upperLevelProperites.setShowSuggestion(false);
     }
 
     
     if(arrayOfMatched.length > 0){
-      props.setActiveSuggestionIndex(0);
+      upperLevelProperites.setActiveSuggestionIndex(0);
     } else {
-      props.setActiveSuggestionIndex(null);
-      props.setShowSuggestion(false);
+      upperLevelProperites.setActiveSuggestionIndex(null);
+      upperLevelProperites.setShowSuggestion(false);
     }
   }
+
 
   const onSubmit = e => {
 
     e.preventDefault();
 
-    if(props.activeSuggestionIndex == null){
-      if(props.value !== ''){
-        if(!props.tags.includes(props.value)){
-          console.log(props.tags);
-          props.setTags([...props.tags, props.value]);
-          props.setValue('');
-          props.setShowSuggestion(false);
+    if(upperLevelProperites.activeSuggestionIndex == null){
+      if(upperLevelProperites.value !== ''){
+        if(!upperLevelProperites.tags.includes(upperLevelProperites.value)){
+          console.log(upperLevelProperites.tags);
+          upperLevelProperites.setTags([...upperLevelProperites.tags, upperLevelProperites.value]);
+          upperLevelProperites.setValue('');
+          upperLevelProperites.setShowSuggestion(false);
         }
       }
     } else {
-      if(!props.tags.includes(props.selectedSuggestions)){
-        console.log(props.tags);
-        props.setTags([...props.tags, props.selectedSuggestions]);
-        props.setValue('');
-        props.setShowSuggestion(false);
+      if(!upperLevelProperites.tags.includes(upperLevelProperites.selectedSuggestions)){
+        console.log(upperLevelProperites.tags);
+        upperLevelProperites.setTags([...upperLevelProperites.tags, upperLevelProperites.selectedSuggestions]);
+        upperLevelProperites.setValue('');
+        upperLevelProperites.setShowSuggestion(false);
       }
    }
   }
 
+  
   const keyboardKeys = e => {
     const arrowUpKey = 38;
     const arrowDownKey = 40;
     const enterKey = 13;
     const pressedKey = e.keyCode;
-    const indexesAmount = props.matched.length;
+    const indexesAmount = upperLevelProperites.matched.length;
 
-    if(props.activeSuggestionIndex === 0 && pressedKey === arrowUpKey){
-      props.setActiveSuggestionIndex(null);
-    } else if (props.activeSuggestionIndex !== 0 && pressedKey === arrowUpKey){
-      props.setActiveSuggestionIndex(props.activeSuggestionIndex - 1);
-    } else if (props.activeSuggestionIndex === indexesAmount && pressedKey === arrowDownKey){
-      props.setActiveSuggestionIndex(props.activeSuggestionIndex);
-    } else if (props.activeSuggestionIndex < indexesAmount && pressedKey === arrowDownKey) {
-      props.setActiveSuggestionIndex(props.activeSuggestionIndex + 1);
+    if(upperLevelProperites.activeSuggestionIndex === 0 && pressedKey === arrowUpKey){
+      upperLevelProperites.setActiveSuggestionIndex(null);
+    } else if (upperLevelProperites.activeSuggestionIndex !== 0 && pressedKey === arrowUpKey){
+      upperLevelProperites.setActiveSuggestionIndex(upperLevelProperites.activeSuggestionIndex - 1);
+    } else if (upperLevelProperites.activeSuggestionIndex === indexesAmount && pressedKey === arrowDownKey){
+      upperLevelProperites.setActiveSuggestionIndex(upperLevelProperites.activeSuggestionIndex);
+    } else if (upperLevelProperites.activeSuggestionIndex < indexesAmount && pressedKey === arrowDownKey) {
+      upperLevelProperites.setActiveSuggestionIndex(upperLevelProperites.activeSuggestionIndex + 1);
     }
 
     if(enterKey === pressedKey){
-      const newTag = props.matched[props.activeSuggestionIndex];
-      props.setSelectedSuggestions(newTag);
+      const newTag = upperLevelProperites.matched[upperLevelProperites.activeSuggestionIndex];
+      upperLevelProperites.setSelectedSuggestions(newTag);
     }
   }
   
@@ -83,10 +100,10 @@ const UpperLevel = props => {
   return(
     <div className={styles.upperLevel}>
       <div className={styles.tags}>
-        {props.tags.map(tag => <Tag key={shortid()} setTags={props.setTags} tags={props.tags}>{tag}</Tag>)}
+        {upperLevelProperites.tags.map(tag => <Tag key={shortid()} setTags={upperLevelProperites.setTags} tags={upperLevelProperites.tags}>{tag}</Tag>)}
       </div>
         <form onSubmit={onSubmit}>
-          <input type="text" value={props.value} onChange={onChange} onKeyDown={keyboardKeys} />
+          <input type="text" value={upperLevelProperites.value} onChange={onChange} onKeyDown={keyboardKeys} />
         </form>
     </div>
   )  
