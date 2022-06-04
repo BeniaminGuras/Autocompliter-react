@@ -14,6 +14,7 @@ const ListOfSuggestions = props => {
     }
   }
 
+  
   const onClick = e => {
     if(!suggestionListProperties.tags.includes(e.target.textContent)){
       suggestionListProperties.setTags([...suggestionListProperties.tags, e.target.textContent ]);
