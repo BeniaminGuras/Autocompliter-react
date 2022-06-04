@@ -5,9 +5,11 @@ import styles from './ListOfSuggestions.module.scss';
 const ListOfSuggestions = props => {
   
   
-  const onMouseEnter = (e, index) => {
-    props.setSelectedSuggestions(e.target);
-    props.setActiveSuggestionIndex(index);
+  const onMouseOver = (e, index) => {
+    if(index !== props.activeSuggestionIndex){
+      props.setSelectedSuggestions(e.target);
+      props.setActiveSuggestionIndex(index);
+    }
   }
 
   const onClick = (e, x) => {
@@ -34,7 +36,7 @@ const ListOfSuggestions = props => {
           onClick={e => onClick(e)
           }
 
-          onMouseOver={e => onMouseEnter(e, index)
+          onMouseOver={e => onMouseOver(e, index)
           }
           
         >
