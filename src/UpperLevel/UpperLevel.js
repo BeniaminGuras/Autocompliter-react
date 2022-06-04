@@ -61,12 +61,14 @@ const UpperLevel = props => {
         }
       }
     } else {
-      if(!upperLevelProperites.tags.includes(upperLevelProperites.selectedSuggestions)){
-        upperLevelProperites.setTags([...upperLevelProperites.tags, upperLevelProperites.selectedSuggestions]);
-        upperLevelProperites.setValue('');
-        upperLevelProperites.setShowSuggestion(false);
+      if(upperLevelProperites.selectedSuggestions !== undefined){
+        if(!upperLevelProperites.tags.includes(upperLevelProperites.selectedSuggestions)){
+          upperLevelProperites.setTags([...upperLevelProperites.tags, upperLevelProperites.selectedSuggestions]);
+          upperLevelProperites.setValue('');
+          upperLevelProperites.setShowSuggestion(false);
+        }
       }
-   }
+    }
   }
 
   

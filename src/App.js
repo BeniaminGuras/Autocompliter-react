@@ -1,4 +1,4 @@
-import Autocompliter from "./Autocompiler/Autocompiler";
+import Autocompliter from "./Autocompliter/Autocompliter";
 
 //autocompliter accept two parameters:
 //data = which is the array of elements that will be filtered to find a suggestions

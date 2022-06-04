@@ -1,7 +1,7 @@
 import { useState } from "react";
 import UpperLevel from "../UpperLevel/UpperLevel";
 import ListOfSuggestions from "../ListOfSuggestions/ListOfSuggestions";
-import styles from './Autocompiler.module.scss';
+import styles from './Autocompliter.module.scss';
 
 const Autocompliter = props => {
   
