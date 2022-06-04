@@ -1,0 +1,26 @@
+ul{
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    display: none;
+    list-style-type: none;
+    border: 1px solid rgba(173, 182, 233, 0.471);
+    border-top: 10px solid rgb(128, 128, 128);
+    margin: 0;
+    padding: 0;
+    border-radius: 5px;
+    overflow: auto;
+
+    li{
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.089);
+    }
+
+    .active{
+      background-color: rgba(230, 230, 230, 0.635);
+    }
+  }
+
+  .active{
+    display: block;
+  }
