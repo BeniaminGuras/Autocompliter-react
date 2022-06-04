@@ -55,7 +55,7 @@ const UpperLevel = props => {
 
     if(upperLevelProperites.activeSuggestionIndex == null){
       if(upperLevelProperites.value !== ''){
-        if(!upperLevelProperites.tags.includes(upperLevelProperites.value)){
+        if(!upperLevelProperites.tags.includes(upperLevelProperites.value)){  
           upperLevelProperites.setTags([...upperLevelProperites.tags, upperLevelProperites.value]);
           upperLevelProperites.setValue('');
           upperLevelProperites.setShowSuggestion(false);

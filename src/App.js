@@ -5,35 +5,23 @@ import Autocompliter from "./Autocompiler/Autocompiler";
 //if callback is not added, the autocompliter will be working in a normal way
 //callback = which is the function that will filter the data, example: 
 //callback={(x, y) => x<y}
+//where x is each element of data, y is the input of client
 //will give us the numbers from data that are lower then client input
 
 
 function App() {
   const data = [
-    "hell",
-    "night",
-    "fun",
-    "morning",
-    "work",
-    "sport",
-    "black",
-    "white",
-    "new",
-    "old",
-    "cool",
-    "bad",
-    "good",
-    "enter",
-    "embargo",
-    "Mount",
-    124,
-    1851251,
-    815290,
-    "dragon"
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
   ];
 
   return (
-    <Autocompliter data={data} /> 
+    <Autocompliter data={data} callback={(x, y) => x<y}/> 
   )
 }
 

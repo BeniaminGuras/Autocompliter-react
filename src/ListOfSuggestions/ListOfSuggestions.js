@@ -15,9 +15,11 @@ const ListOfSuggestions = props => {
   }
 
   const onClick = e => {
-    suggestionListProperties.setTags([...suggestionListProperties.tags, e.target.textContent ]);
-    suggestionListProperties.setValue('');
-    suggestionListProperties.setShowSuggestion(false);
+    if(!suggestionListProperties.tags.includes(e.target.textContent)){
+      suggestionListProperties.setTags([...suggestionListProperties.tags, e.target.textContent ]);
+      suggestionListProperties.setValue('');
+      suggestionListProperties.setShowSuggestion(false);
+    }
   }
 
   return(
